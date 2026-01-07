@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quán Gốc Cây Dứa – Menu Nước Giải Khát</title>
+
+<style>
+/* ---------------- GLOBAL ---------------- */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #fff7d9;
+    color: #333;
+}
+
+header {
+    background: linear-gradient(45deg, #ff9800, #ff5722);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+}
+
+/* ---------------- SLIDER ---------------- */
+.slider {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: 1s;
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slide.active {
+    opacity: 1;
+}
+
+/* ---------------- MENU ---------------- */
+.menu-section {
+    padding: 30px;
+}
+.menu-title {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #d84315;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.filter-btn {
+    padding: 10px 18px;
+    border-radius: 20px;
+    background: #ffe0b2;
+    border: 2px solid #ffa726;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.filter-btn:hover, .filter-btn.active {
+    background: #ff9800;
+    color: white;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+.item {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform .3s;
+}
+.item:hover {
+    transform: scale(1.05);
+}
+.item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.item-name {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #e65100;
+}
+
+/* ---------------- FEATURED SLIDER ---------------- */
+.featured-section {
+    padding: 40px 20px;
+    background: #fff3e0;
+}
+
+.featured-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: #e65100;
+    margin-bottom: 25px;
+}
+
+.featured-slider {
+    overflow: hidden;
+    width: 100%;
+}
+
+.featured-track {
+    display: flex;
+    gap: 20px;
+    animation: scrollFeatured 20s linear infinite;
+}
+
+.featured-item {
+    min-width: 200px;
+    height: 320px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    background: #fff;
+}
+
+.featured-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes scrollFeatured {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ---------------- FOOTER ---------------- */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    background: #ff7043;
+}
+</style>
+</head>
+
+<body>
+
+<header>QUÁN GỐC CÂY DỨA – MENU GIẢI KHÁT</header>
+
+<!-- ---------------- IMAGE SLIDER ---------------- -->
+<div class="slider">
+    <div class="slide active"><img src="./imgs/banner.png"></div>
+    <div class="slide"><img src="./imgs/banner2.jpg"></div>
+    <div class="slide"><img src="./imgs/banner3.webp"></div>
+</div>
+
+<!-- ---------------- MENU ---------------- -->
+<div class="menu-section">
+    <div class="menu-title">Danh Mục Thức Uống</div>
+
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterMenu('all')">Tất cả</button>
+        <button class="filter-btn" onclick="filterMenu('sinh-to')">Sinh tố</button>
+        <button class="filter-btn" onclick="filterMenu('tra')">Trà</button>
+        <button class="filter-btn" onclick="filterMenu('nuoc-ep')">Nước ép</button>
+        <button class="filter-btn" onclick="filterMenu('khac')">Khác</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+</div>
+
+<!-- ---------------- FEATURED IMAGES ---------------- -->
+<div class="featured-section">
+    <div class="featured-title">Ảnh Nổi Bật</div>
+
+    <div class="featured-slider">
+        <div class="featured-track" id="featuredTrack">
+            <div class="featured-item"><img src="./imgs/phongKT (3).jpg"></div>
+            <div class="featured-item"><img src="./imgs/phongKT (5).jpg"></div>
+            <div class="featured-item"><img src="./imgs/phongKT (9).jpg"></div>
+            <div class="featured-item"><img src="./imgs/phongKT (11).jpg"></div>
+            <div class="featured-item"><img src="./imgs/phongKT (12).jpg"></div>
+            <div class="featured-item"><img src="./imgs/phongKT (13).jpg"></div>
+        </div>
+    </div>
+</div>
+
+<footer>© 2025 Quán Cây Dừa – Nước Giải Khát & Bánh Tráng Trộn - By TaiKind</footer>
+
+<script>
+/* ---------------- SLIDER ---------------- */
+let index = 0;
+setInterval(() => {
+    const slides = document.querySelectorAll(".slide");
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 3000);
+
+/* ---------------- MENU DATA ---------------- */
+const menuItems = [
+    {name: "Sinh tố dừa", type: "sinh-to", img: "./imgs/sinhto1.jpg"},
+    {name: "Sinh tố bơ", type: "sinh-to", img: "./imgs/sinhto2.jpg"},
+    {name: "Sinh tố mãng cầu", type: "sinh-to", img: "./imgs/sinhto3.jpg"},
+    {name: "Cam vắt", type: "nuoc-ep", img: "./imgs/sinhto5.jpg"},
+    {name: "Nước mía", type: "nuoc-ep", img: "./imgs/sinhto6.jpg"},
+    {name: "Trà đào", type: "tra", img: "./imgs/sinhto8.jpg"},
+    {name: "Trà tắc", type: "tra", img: "./imgs/sinhto7.jpg"},
+    {name: "Đá me", type: "khac", img: "./imgs/caphe3.jpg"},
+    {name: "Chanh muối", type: "khac", img: "./imgs/caphe2.jpg"},
+    {name: "Cà phê đá", type: "khac", img: "./imgs/caphe1.jpg"},
+];
+
+/* ---------------- RENDER MENU ---------------- */
+function renderMenu(filter = "all") {
+    const grid = document.getElementById("menuGrid");
+    grid.innerHTML = "";
+    menuItems
+        .filter(item => filter === "all" || item.type === filter)
+        .forEach(item => {
+            grid.innerHTML += `
+                <div class="item">
+                    <img src="${item.img}">
+                    <div class="item-name">${item.name}</div>
+                </div>
+            `;
+        });
+}
+renderMenu();
+
+/* ---------------- FILTER ---------------- */
+function filterMenu(type) {
+    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
+    renderMenu(type);
+}
+
+/* ---------------- FEATURED DUPLICATE FOR SMOOTH LOOP ---------------- */
+const track = document.getElementById("featuredTrack");
+track.innerHTML += track.innerHTML;
+</script>
+
+</body>
+</html>
